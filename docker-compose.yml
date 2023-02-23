@@ -1,0 +1,99 @@
+version: "3.9"
+
+services:
+  api:
+    container_name: api
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    command: ./start-api
+    
+      
+    volumes:
+      - static_volume:/usr/src/static
+      - media_volume:/usr/src/media
+      - backend_volume:/usr/src/app
+    env_file:
+      - .env
+    
+    depends_on:
+      - postgres_db
+      - redis
+    networks:
+      - universal 
+
+
+  postgres_db:
+    container_name: database
+    image: postgres:15.0-alpine
+    ports: 
+      - ${POSTGRES_PORT}:${POSTGRES_PORT}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_PORT=${POSTGRES_PORT}
+    networks:
+      - universal
+  redis:
+    container_name: redis
+    image: redis:5-alpine
+    networks:
+      - universal
+  celery_worker:
+    container_name: celery
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    command: /usr/src/app/start-celeryworker
+    env_file:
+      - .env
+
+    depends_on:
+      - redis
+      - postgres_db
+    networks:
+      - universal
+  flower:
+    container_name: flower
+    build: 
+      context: .
+      dockerfile: ./Dockerfile
+    command: /usr/src/app/start-flower
+    env_file:
+      - .env
+    ports:
+      - "5557:5555"
+    depends_on:
+      - redis
+      - postgres_db
+    networks:
+      - universal
+    
+  nginx:
+    container_name: nginx
+    restart: always
+    depends_on:
+      - api
+    volumes:
+      - static_volume:/static
+      - media_volume:/media
+    build: 
+      context: .
+      dockerfile: ./nginx/Dockerfile
+    ports:
+      - "8080:80"
+    networks:
+      - universal
+
+networks:
+  universal:
+    driver: bridge
+
+volumes:
+  postgres_data:
+  static_volume:
+  media_volume:
+  backend_volume:
