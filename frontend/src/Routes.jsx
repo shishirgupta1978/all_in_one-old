@@ -6,6 +6,7 @@ import Header from './components/Header';
 import PrivateRoute from './components/PrivateRoute';
 import ResetPassword from './pages/ResetPassword';
 import ChangePassword from './pages/ChangePassword';
+import About from './pages/About';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import Properties from './pages/Properties';
@@ -32,6 +33,7 @@ const App = () => {
           <Route path="/resetpassword" element={<ResetPassword />} />
           <Route path="/changepassword" element={<PrivateRoute><ChangePassword /></PrivateRoute>} />
           <Route path="/eshop" element={<EshopHome />} />
+          <Route path="/about" element={<About />} />
           <Route path="/helpdesk" element={<PrivateRoute><HelpdeskHome /></PrivateRoute>} />
           <Route path="/faqs" element={<Faqs />} />
           <Route path="/contact" element={<Contact />} />

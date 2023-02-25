@@ -31,7 +31,7 @@ if(user)
 
 
 
-	const submitHandler = (e) => {
+	const handleSubmit = (e) => {
 		e.preventDefault();
 		if (!email) {
 			toast.error("An email must be provided");
@@ -51,23 +51,19 @@ if(user)
 	return (
 		<>
 			<Title title="login" />
-			<div className='main-height px-4 px-lg-5 d-flex align-items-center justify-content-center'>
-				<Container className="col-sm-12 col-md-6 col-lg-4 form">
-					<Row>
-						<Col className="mg-top text-center">
+		  
+				<Container className="align-items-center vh-100 mt-3">
+				<Row className="justify-content-center">
+						<Col xs={12} md={8} lg={6} xl={4} className="form">
 							<section>
-								<h1>
+								<h1 className="text-center">
 									<FaSignInAlt /> Login
 								</h1>
 								<hr className="hr-text" />
 							</section>
-						</Col>
-					</Row>
 
 					{status ==="pending" && <Spinner />}
-					<Row className="mt-3">
-						<Col className="justify-content-center">
-							<Form onSubmit={submitHandler}>
+							<Form onSubmit={handleSubmit}>
 
 								<TextField margin='normal' required fullWidth id='email' name='email' type='email' label='Email Address' value={email}
 									onChange={(e) => setEmail(e.target.value)} />
@@ -99,16 +95,16 @@ if(user)
 									</Button>
 								</div>
 							</Form>
+							<Row className="py-3">
+							<Col>
+								New User? <Link to="/register">Register Here.....</Link>
+							</Col>
+						</Row>
+	
 						</Col>
 					</Row>
 
-					<Row className="py-3">
-						<Col>
-							New User? <Link to="/register">Register Here.....</Link>
-						</Col>
-					</Row>
 				</Container>
-			</div>
 		</>
 	);
 };
