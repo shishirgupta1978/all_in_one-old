@@ -51,22 +51,22 @@ class PropertySerializer(serializers.ModelSerializer):
         return obj.user.username
 
     def get_cover_photo(self,obj):
-        return obj.cover_photo.url
+        return obj.cover_photo
 
     def get_photo1(self,obj):
-        return obj.photo1.url
+        return obj.photo1
 
     def get_photo2(self,obj):
-        return obj.photo2.url
+        return obj.photo2
 
     def get_photo3(self,obj):
-        return obj.photo3.url
+        return obj.photo3
 
     def get_photo4(self,obj):
-        return obj.photo4.url
+        return obj.photo4
 
     def get_profile_photo(self,obj):
-        return obj.user.profile.profile_photo.url
+        return obj.user.profile.profile_photo
 
 
 class PropertyCreateSerializer(serializers.ModelSerializer):

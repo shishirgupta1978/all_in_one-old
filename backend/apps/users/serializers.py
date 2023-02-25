@@ -9,7 +9,7 @@ User = get_user_model()
 
 class UserSerializer(serializers.ModelSerializer):
     phone_number = PhoneNumberField(source="profile.phone_number")
-    profile_photo = serializers.ImageField(source="profile.profile_photo")
+    profile_photo = serializers.CharField(source="profile.profile_photo")
     country = CountryField(source="profile.country")
     city = serializers.CharField(source="profile.city")
     top_seller = serializers.BooleanField(source="profile.top_agent")

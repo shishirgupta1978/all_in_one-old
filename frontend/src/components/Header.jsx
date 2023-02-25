@@ -1,8 +1,7 @@
 import React,{useEffect} from 'react';
-import {Container,Nav,Navbar,NavDropdown} from 'react-bootstrap';
+import {Image,Container,Nav,Navbar,NavDropdown} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import logo from '../images/logo.png';
-import Image from "react-bootstrap/Image";
 import { FaSignInAlt,FaSignOutAlt } from 'react-icons/fa';
 import {GiHouse} from 'react-icons/gi';
 import { useDispatch,useSelector } from 'react-redux';
@@ -25,6 +24,7 @@ useEffect(()=>{
   {
     dispatch(profile({"url": "/api/v1/auth/users/me/","private" :true}));
   }
+  console.log(userprofile)
 
 },[user?.refresh,dispatch]);
 
@@ -42,7 +42,7 @@ useEffect(()=>{
           <Nav.Link as={Link} to="/cart">Cart</Nav.Link>
           
           {user ? (<>                
-          <NavDropdown title={`Welcome ${userprofile?.first_name}`} id="username">
+          <NavDropdown title={<Image src={userprofile?.profile_pic} roundedCircle />} id="username">
           <NavDropdown.Item as={Link} to="/profile">Profile</NavDropdown.Item>
           <NavDropdown.Item  as={Link} to="/changepassword">Change Password</NavDropdown.Item>
           <NavDropdown.Item onClick={logoutHandler}><FaSignOutAlt/> Logout</NavDropdown.Item></NavDropdown></>
