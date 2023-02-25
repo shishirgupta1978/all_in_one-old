@@ -13,30 +13,26 @@ import { getResponse, reset } from "../api/apiSlice";
 
 const ResetPassword = () => {
 	const [email, setEmail] = useState("");
-	const [first_render, setFirst_render]= useState(true)
 
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
-	const {status } = useSelector(
+	const {user,status } = useSelector(
 		(state) => state.api
 	);
 
 	useEffect(() => {
-		if(first_render)
-		{
-			setFirst_render(false)
-		}else{
-			if (status === "success") {
+	
+			if (user) {
 				navigate("/");
 			}
 
-		}
-
 		
 
 		
-	}, [status, navigate, dispatch,first_render]);
+
+		
+	}, [status, navigate,user, dispatch]);
 
 	const submitHandler = (e) => {
 		e.preventDefault();

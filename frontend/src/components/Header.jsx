@@ -37,7 +37,7 @@ useEffect(()=>{
         <Nav className="ms-auto">
           <Nav.Link as={Link} to="/">Home</Nav.Link>
           <Nav.Link as={Link} to="/properties">Properties</Nav.Link>
-          <Nav.Link as={Link} to="/shop">Shop</Nav.Link>
+          <Nav.Link as={Link} to="/eshop">Shop</Nav.Link>
           <Nav.Link as={Link} to="/hhop">Helpdesk</Nav.Link>
           <Nav.Link as={Link} to="/cart">Cart</Nav.Link>
           

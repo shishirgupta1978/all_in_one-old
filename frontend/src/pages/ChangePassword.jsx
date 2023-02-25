@@ -63,22 +63,18 @@ const ChangePassword = () => {
 	return (
 		<>
 			<Title title="Change Password" />
-			<div className='main-height px-4 px-lg-5 d-flex align-items-center justify-content-center'>
-				<Container className="col-sm-12 col-md-6 col-lg-4 form">
-					<Row>
-						<Col className="mg-top text-center">
-							<section>
-								<h1>
+				<Container className="align-items-center vh-100 mt-3">
+				<Row className="justify-content-center">
+				<Col xs={12} md={8} lg={6} xl={4} className="form">
+										<section>
+								<h1 className="text-center">
 									Change Password
 								</h1>
 								<hr className="hr-text" />
 							</section>
-						</Col>
-					</Row>
-
+				
 					{status==="pending" && <Spinner />}
-					<Row className="mt-3">
-						<Col className="justify-content-center">
+				
 							<Form onSubmit={submitHandler}>
                             <TextField margin='normal' required fullWidth id='current_password' name='current_password' type='password' label='Current Password' value={current_password}
 									onChange={(e) => setCurrent_password(e.target.value)} />
@@ -104,7 +100,6 @@ const ChangePassword = () => {
 
 					
 				</Container>
-			</div>
 		</>
 	);
 };
