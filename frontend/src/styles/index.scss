@@ -158,7 +158,68 @@ h1.notfound {
 	padding-left: 20px;
 	padding-right: 20px;
 }
+.product-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 2rem 0;
+  }
+  
+  .product-images {
+    width: 50%;
+  }
+  
+  .product-image {
+    width: 100%;
+    height: 60vh;
 
+  }
+  
+  .image-thumbnails {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+  }
+  
+  .thumbnail {
+    width: 20%;
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+  }
+  
+  .thumbnail:hover,
+  .thumbnail.active {
+    opacity: 1;
+  }
+  
+  .product-info {
+    width: 45%;
+  }
+  
+  .product-info h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .product-info p {
+    margin-bottom: 1rem;
+  }
+  
+  .product-info button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .product-info button:hover {
+    background-color: #0062cc;
+  }
+  
 
 div.text-center {
 	box-sizing: border-box;

@@ -18,7 +18,7 @@ const Property = ({ property }) => {
 				{property.advert_type}
 			</Badge>
 			<Link to={`/property/${property.slug}`}>
-				<Card.Img src={property.cover_photo} variant="top" />
+				<Card.Img src={`https://all-in-one-rdet.onrender.com${property.cover_photo}`} variant="top" />
 			</Link>
 			<Card.Title className="property-price">
 				${numberWithCommas(Number(property.price))}

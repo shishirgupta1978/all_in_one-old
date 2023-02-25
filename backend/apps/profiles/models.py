@@ -22,8 +22,8 @@ class Profile(TimeStampedUUIDModel):
     license = models.CharField(
         verbose_name=_("Licence number"), max_length=20, blank=True, null=True
     )
-    profile_photo = models.ImageField(
-        verbose_name=_("Profile Photo"), default="/profile_default.png"
+    profile_photo = models.CharField(
+        verbose_name=_("Profile Photo Url"),max_length=255, blank=True,null=True
     )
     country = CountryField(
         verbose_name=_("Country"), default="IN", blank=False, null=False

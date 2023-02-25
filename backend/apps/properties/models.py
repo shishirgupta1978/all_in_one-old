@@ -61,10 +61,10 @@ class Property(TimeStampedUUIDModel):
         verbose_name=_("City"), max_length=180, default="Delhi", blank=True
     )
     postal_code = models.CharField(
-        verbose_name=_("Postal Code"), max_length=100, default="110014"
+        verbose_name=_("Postal Code"), max_length=100, default=""
     )
     street_address = models.CharField(
-        verbose_name=_("Street Address"), max_length=150, default="18 Avenue"
+        verbose_name=_("Street Address"), max_length=150, default=""
     )
     property_number = models.IntegerField(
         verbose_name=_("Property Name"), validators=[MinValueValidator(1)], default=112
@@ -74,7 +74,7 @@ class Property(TimeStampedUUIDModel):
     )
     tax = models.DecimalField(
         verbose_name=_("Property Tax"),
-        max_digits=6,
+        max_digits=8,
         decimal_places=2,
         default=0.15,
         help_text="15% property tax charged",
@@ -84,9 +84,7 @@ class Property(TimeStampedUUIDModel):
     )
     total_floors = models.IntegerField(verbose_name=_("Number of floors"), default=0)
     bedrooms = models.IntegerField(verbose_name=_("Bedrooms"), default=1)
-    bathrooms = models.DecimalField(
-        verbose_name=_("Bathrooms"), max_digits=4, decimal_places=2, default=1.0
-    )
+    bathrooms = models.IntegerField(verbose_name=_("Bathrooms"), default=1)
     advert_type = models.CharField(
         verbose_name=_("Advert Type"),
         max_length=50,
@@ -99,13 +97,13 @@ class Property(TimeStampedUUIDModel):
         choices=PropertyType.choices,
         default=PropertyType.OTHER,
     )
-    cover_photo = models.ImageField(
-        verbose_name=_("Main Photo"), default="/house_sample.jpg", null=True
+    cover_photo = models.CharField(
+        verbose_name=_("Main Photo URL"),max_length=255,  null=True,blank=True
     )
-    photo1 = models.ImageField(default="/image1.jpg", null=True, blank=True)
-    photo2 = models.ImageField(default="/image2.jpg", null=True, blank=True)
-    photo3 = models.ImageField(default="/image3.jpg", null=True, blank=True)
-    photo4 = models.ImageField(default="/image4.jpg", null=True, blank=True)
+    photo1 = models.CharField(verbose_name=_("Photo 1 URL"),max_length=255,null=True, blank=True)
+    photo2 = models.CharField(verbose_name=_("Photo 2 URL"),max_length=255,null=True, blank=True)
+    photo3 = models.CharField(verbose_name=_("Photo 3 URL"),max_length=255,null=True, blank=True)
+    photo4 = models.CharField(verbose_name=_("Photo 4 URL"),max_length=255,null=True, blank=True)
     published_status = models.BooleanField(
         verbose_name=_("Published Status"), default=False
     )
