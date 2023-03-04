@@ -3,8 +3,25 @@ from django_countries.serializer_fields import CountryField
 from djoser.serializers import UserCreateSerializer
 from phonenumber_field.serializerfields import PhoneNumberField
 from rest_framework import serializers
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from rest_framework_simplejwt.views import TokenObtainPairView
+
 
 User = get_user_model()
+
+
+
+class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
+    @classmethod
+    def get_token(cls, user):
+        token = super().get_token(user)
+        token['user'] = {'email':user.email, 'name': user.first_name +" "+user.last_name,'gender':user.gender,'date_of_birth':str(user.date_of_birth),'profile':user.profile.profile_photo,'is_active':user.is_active,'is_staff':user.is_staff,"is_superuser":user.is_superuser}
+        # ...
+
+        return token
+
+
+
 
 
 class UserSerializer(serializers.ModelSerializer):
