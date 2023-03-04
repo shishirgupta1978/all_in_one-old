@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import  Client,Journal,Task_register,Taskname
+from .models import  Client,Journal,Task_register,Task
 
 
 
@@ -14,12 +14,12 @@ class JournalSerializer(serializers.ModelSerializer):
         model = Journal
         fields =('name','client')
 
-class TasknameSerializer(serializers.ModelSerializer):
+class TaskSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Taskname
+        model = Task
         fields =('name',)
 
 class Task_registerSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Taskname
-        fields =('file','journal','taskname','user','status')
+        model = Task_register
+        fields =('file','journal','task','user','status')

@@ -4,7 +4,16 @@ from django.contrib import admin
 from django.urls import include, path,re_path
 from apps.users.views import CustomTokenObtainPairView
 from rest_framework_simplejwt.views import TokenRefreshView
+from rest_framework.routers import DefaultRouter
+from apps.docx_utility.views import ClientViewSet,Task_registerViewSet,TaskViewSet,JournalViewSet
 from . import views
+
+router = DefaultRouter()
+router.register(r'client', ClientViewSet, basename='my_model')
+router.register(r'journal', JournalViewSet, basename='my_model')
+router.register(r'task', TaskViewSet, basename='task')
+router.register(r'task_reg', Task_registerViewSet, basename='task_reg')
+
 
 
 urlpatterns = [
@@ -16,6 +25,7 @@ urlpatterns = [
     path("api/properties/", include("apps.properties.urls")),
     path("api/ratings/", include("apps.ratings.urls")),
     path("api/enquiries/", include("apps.enquiries.urls")),
+    path("api/docxutility/", include(router.urls)),
  
 ]
 #+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
