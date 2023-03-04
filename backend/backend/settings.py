@@ -56,7 +56,8 @@ LOCAL_APPS = [
     "apps.ratings",
     "apps.properties",
     "apps.enquiries",
-    "apps.docx_utility"
+    "apps.docx_utility",
+    "apps.store"
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -99,6 +100,11 @@ WSGI_APPLICATION = "backend.wsgi.application"
 
 
 DATABASES = {
+        'default1': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    },
+
     "default": {
         "ENGINE": env("POSTGRES_ENGINE"),
         "NAME": env("POSTGRES_DB"),

@@ -1,5 +1,5 @@
 from django.conf import settings
-#from django.conf.urls.static import static
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path,re_path
 from apps.users.views import CustomTokenObtainPairView
@@ -17,6 +17,7 @@ router.register(r'task_reg', Task_registerViewSet, basename='task_reg')
 
 
 urlpatterns = [
+    path('', include('apps.store.urls')),
     path("admin/", admin.site.urls),
     path('api/auth/token/', CustomTokenObtainPairView.as_view(), name='token_obtain'),
     path('api/auth/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
@@ -26,7 +27,6 @@ urlpatterns = [
     path("api/ratings/", include("apps.ratings.urls")),
     path("api/enquiries/", include("apps.enquiries.urls")),
     path("api/docxutility/", include(router.urls)),
- 
 ]
 #+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
