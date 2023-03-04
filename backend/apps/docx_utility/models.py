@@ -7,33 +7,25 @@ User = get_user_model()
 # Create your models here.
 
 class Client(models.Model):
-    name = models.CharField(max_length=100,primary_key=True)
+    name = models.CharField(max_length=100,unique=True,blank=False,null=False)
     def __str__(self):
         return self.name
 
 class Journal(models.Model):
-    name = models.CharField(max_length=100,blank=False)
+    name = models.CharField(max_length=100,blank=False,null=False)
     client = models.ForeignKey(Client,on_delete=models.CASCADE, related_name="journals")
     def __str__(self):
         return f'{self.name}({self.client.name})'
 
 class Task(models.Model):
-    name = models.CharField(max_length=100,primary_key=True)
+    name = models.CharField(max_length=100,unique=True,blank=False,null=False)
     def __str__(self):
         return self.name
 
 
 
 def get_file_path(instance, filename):
-    # use the instance's ID if it is not None
-    if instance.id:
-        directory = instance.id
-    else:
-        # generate a unique directory name using uuid
-        directory = uuid.uuid4().hex
-    # generate a unique filename using uuid
-    #filename = '{}{}'.format(uuid.uuid4().hex, os.path.splitext(filename)[1])
-    # return the path where the file will be saved
+    directory = uuid.uuid4().hex
     return 'taskmanage/{}/{}'.format(directory, filename)
 
 
